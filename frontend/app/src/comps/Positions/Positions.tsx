@@ -136,7 +136,6 @@ function PositionsGroup({
             [0, <ActionCard key='0' type='borrow' />],
             [1, <ActionCard key='1' type='leverage' />],
             [2, <ActionCard key='2' type='earn' />],
-            [3, <ActionCard key='3' type='stake' />],
           ]
         : []
     )
