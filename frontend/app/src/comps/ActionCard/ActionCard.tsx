@@ -7,11 +7,7 @@ import { useState } from "react";
 import { match } from "ts-pattern";
 import { ActionIcon } from "./ActionIcon";
 
-export function ActionCard({
-  type,
-}: {
-  type: "borrow" | "leverage" | "earn" | "stake";
-}) {
+export function ActionCard({ type }: { type: "borrow" | "leverage" | "earn" }) {
   const [hint, setHint] = useState(false);
   const [active, setActive] = useState(false);
 
@@ -61,16 +57,7 @@ export function ActionCard({
       path: "/earn",
       title: ac.earn.title,
     }))
-    .otherwise(() => ({
-      colors: {
-        background: token("colors.brandBlue"),
-        foreground: token("colors.brandBlueContent"),
-        foregroundAlt: token("colors.brandBlueContentAlt"),
-      },
-      description: "Default description",
-      path: "/",
-      title: "Home",
-    }));
+    .exhaustive();
 
   return (
     <Link
