@@ -84,7 +84,8 @@ export const EnvSchema = v.pipe(
     COLL_2_CONTRACT_TROVE_NFT: v.optional(vAddress()),
     COLL_2_TOKEN_ID: v.optional(CollateralSymbolSchema),
 
-    DEMO_MODE: vEnvFlag(),
+    DEMO_MODE: v.pipe(v.optional(vEnvFlag()), v.transform((value) => value ?? false)),
+    VERCEL_ANALYTICS: v.pipe(v.optional(v.string()), v.transform((value) => value ?? false)),
     WALLET_CONNECT_PROJECT_ID: v.string(),
   }),
   v.transform((data) => {
@@ -218,6 +219,7 @@ const parsedEnv = v.parse(EnvSchema, {
   COLL_2_CONTRACT_TROVE_NFT: process.env.NEXT_PUBLIC_COLL_2_CONTRACT_TROVE_NFT,
 
   DEMO_MODE: process.env.NEXT_PUBLIC_DEMO_MODE,
+  VERCEL_ANALYTICS: process.env.NEXT_PUBLIC_VERCEL_ANALYTICS,
   WALLET_CONNECT_PROJECT_ID: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID,
 });
 
@@ -244,5 +246,6 @@ export const {
   CONTRACT_WETH,
   DELEGATE_AUTO,
   DEMO_MODE,
+  VERCEL_ANALYTICS,
   WALLET_CONNECT_PROJECT_ID,
 } = parsedEnv;
