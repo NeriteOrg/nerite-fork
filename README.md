@@ -1,4 +1,6 @@
-# Liquity V2
+![Liquity V2](https://github.com/user-attachments/assets/b3ffbc5e-b7a8-46b6-a080-e18a0792bb64)
+
+[![Coverage Status](https://coveralls.io/repos/github/liquity/bold/badge.svg?branch=main&t=yZSfc8)](https://coveralls.io/github/liquity/bold?branch=main)
 
 ## Table of Contents
 1. [Significant Changes in Liquity v2](#significant-changes-in-liquity-v2)
@@ -102,6 +104,7 @@
    - [13 - Trove Adjustments May Be Griefed by Sandwich Raising the Average Interest Rate](#13---trove-adjustments-may-be-griefed-by-sandwich-raising-the-average-interest-rate)
    - [14 - Stability Pool Claiming and Compounding Yield Can Be Used to Gain a Slightly Higher Rate of Rewards](#14---stability-pool-claiming-and-compounding-yield-can-be-used-to-gain-a-slightly-higher-rate-of-rewards)
    - [15 - Urgent Redemptions Premium Can Worsen the ICR](#15---urgent-redemptions-premium-can-worsen-the-icr)
+   - [Issues identified in audits requiring no fix](#issues-identified-in-audits-requiring-no-fix)
 
 27. [Requirements](#requirements)
 
@@ -1569,49 +1572,5 @@ Liquidations already carry a collateral premium to the caller and to the liquida
 
 Redemptions at this CR may allow for a bit more bad debt to be redistributed which could cause a liquidation cascade, however the difference doesn't seem particularly meaningful when compared to how high the Liquidation Premium tends to be for liquidations.
 
-## Requirements
-
-- [Node.js](https://nodejs.org/)
-- [pnpm](https://pnpm.io/)
-- [Foundry](https://book.getfoundry.sh/getting-started/installation)
-
-
-
-## Setup
-
-```sh
-git clone git@github.com:liquity/bold.git
-cd bold
-pnpm install
-```
-
-## How to develop
-
-```sh
-# Run the anvil local node (keep it running in a separate terminal):
-anvil
-
-# First, the contracts:
-cd contracts
-
-# Build & deploy the contracts:
-./deploy local --open-demo-troves # optionally open troves for the first 8 anvil accounts
-
-# Print the addresses of the deployed contracts:
-pnpm tsx utils/deployment-artifacts-to-app-env.ts deployment-context-latest.json
-
-# We are now ready to pass the deployed contracts to the app:
-cd ../frontend
-
-# Copy the example .env file:
-cp .env .env.local
-
-# Edit the .env.local file:
-#  - Make sure the Hardhat / Anvil section is uncommented.
-#  - Copy into it the addresses printed by command above.
-
-# Run the app development server:
-pnpm dev
-
-# You can now open https://localhost:3000 in your browser.
-```
+### Issues identified in audits requiring no fix
+A collection of issues identified in security audits which nevertheless do not require a fix [can be found here](https://github.com/liquity/bold/labels/wontfix).
